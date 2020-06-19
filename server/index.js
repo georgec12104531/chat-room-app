@@ -17,36 +17,40 @@ io.on("connection", (socket) => {
     // Add user
     const { user, error } = addUser({ id: socket.id, name, room });
 
-    // Lets the user know they have joined the chat
-    socket.emit("message", {
-      user: "admin",
-      text: "You have entered the room",
-      time: moment().format("h:mm a"),
-    });
+    if (user) {
+      // Lets the user know they have joined the chat
+      socket.emit("message", {
+        user: "admin",
+        text: "You have entered the room",
+        time: moment().format("h:mm a"),
+      });
 
-    // Lets the all the other users in the room that he has joined the chat
-    socket.broadcast.to(user.room).emit("message", {
-      user: "admin",
-      text: `${user.name} has joined`,
-      time: moment().format("h:mm a"),
-    });
+      // Lets the all the other users in the room that he has joined the chat
+      socket.broadcast.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} has joined`,
+        time: moment().format("h:mm a"),
+      });
 
-    socket.join(user.room);
+      socket.join(user.room);
 
-    // Send updated users
-    io.to(user.room).emit("roomData", {
-      room: user.room,
-      users: getUsersInRoom(user.room),
-    });
+      // Send updated users
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
-    io.to(user.room).emit("message", {
-      user: user.name,
-      text: message,
-      time: moment().format("h:mm a"),
-    });
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: user.name,
+        text: message,
+        time: moment().format("h:mm a"),
+      });
+    }
 
     callback();
   });
