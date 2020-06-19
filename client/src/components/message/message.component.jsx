@@ -1,5 +1,6 @@
 import React from "react";
 import "./message.style.css";
+import ReactEmoji from "react-emoji";
 import selfProfile from "../../icons/profile.png";
 import otherProfile from "../../icons/avatar.png";
 
@@ -21,7 +22,7 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
     <div className="message-main-container">
       <div className="message-container justify-end">
         <div className="message-box background-light">
-          <p className="message-text color-dark">{text}</p>
+          <p className="message-text color-dark">{ReactEmoji.emojify(text)}</p>
         </div>
         {groupMessages ? (
           <div className="profile-spacing"></div>
@@ -52,7 +53,7 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
           ></img>
         )}
         <div className="message-box background-blue">
-          <p className="message-text">{text}</p>
+          <p className="message-text">{ReactEmoji.emojify(text)}</p>
         </div>
       </div>
       {showOtherTimeStamp ? (
