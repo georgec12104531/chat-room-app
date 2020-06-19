@@ -12,8 +12,9 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 io.on("connection", (socket) => {
   // When a user joins
-  socket.on("join", ({ name, room }, callback) => {
+  socket.on("join", ({ name, room }) => {
     console.log("User has joined");
+    // Add user
     const { user, error } = addUser({ id: socket.id, name, room });
 
     // Lets the user know they have joined the chat
@@ -32,6 +33,7 @@ io.on("connection", (socket) => {
 
     socket.join(user.room);
 
+    // Send updated users
     io.to(user.room).emit("roomData", {
       room: user.room,
       users: getUsersInRoom(user.room),

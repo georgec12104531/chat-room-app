@@ -7,8 +7,8 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
   let isSentByCurrentUser = false;
   let trimmedName = name.trim().toLowerCase();
 
-  let groupMessages = prev && prev.user === trimmedName ? true : false;
-  let groupOtherMessages = prev ? prev.user === user : false;
+  let groupMessages = prev && prev.user === trimmedName;
+  let groupOtherMessages = prev && prev.user === user;
 
   let showTimeStamp = next && next.user === trimmedName ? false : true;
   let showOtherTimeStamp = next && next.user === user ? false : true;
