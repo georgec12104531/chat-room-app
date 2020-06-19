@@ -1,5 +1,7 @@
 import React from "react";
 import "./message.style.css";
+import selfProfile from "../../icons/profile.png";
+import otherProfile from "../../icons/avatar.png";
 
 const Message = ({ message: { user, text, time }, name, prev, next }) => {
   let isSentByCurrentUser = false;
@@ -16,21 +18,49 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
   }
 
   return isSentByCurrentUser ? (
-    <div className="message-container justify-end">
-      {group ? <div></div> : <p className="sent-text">{trimmedName}</p>}
-
-      {showTimeStamp ? <p>{time}</p> : <p></p>}
-      <div className="message-box backgroundBlue">
-        <p className="message-text">{text}</p>
+    <div className="message-main-container">
+      <div className="message-container justify-end">
+        <div className="message-box backgroundLight">
+          <p className="message-text colorDark">{text}</p>
+        </div>
+        {group ? (
+          <div className="profile-spacing"></div>
+        ) : (
+          <img
+            alt="self-profile"
+            className="profile profile-spacing"
+            src={selfProfile}
+          ></img>
+        )}
       </div>
+
+      {showTimeStamp ? (
+        <p className="sent-text time-spacing-right">{time}</p>
+      ) : (
+        <p></p>
+      )}
     </div>
   ) : (
-    <div className="message-container justify-start">
-      <div className="message-box backgroundLight">
-        <p className="message-text colorDark">{text}</p>
+    <div className="message-main-container align-start">
+      <div className="message-container justify-start">
+        {otherGroup ? (
+          <div className="profile-spacing"></div>
+        ) : (
+          <img
+            alt="self-profile"
+            className="profile profile-spacing"
+            src={otherProfile}
+          ></img>
+        )}
+        <div className="message-box backgroundBlue">
+          <p className="message-text">{text}</p>
+        </div>
       </div>
-      {otherGroup ? <div></div> : <p className="sent-text">{user}</p>}
-      {otherShowTimeStamp ? <p>{time}</p> : <p></p>}
+      {otherShowTimeStamp ? (
+        <p className="sent-text time-spacing-left">{time}</p>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };

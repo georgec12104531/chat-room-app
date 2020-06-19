@@ -1,14 +1,22 @@
 .input-container {
   display: flex;
+  justify-content: space-around;
   border-top: 2px solid #d3d3d3;
+  height: 56px;
 }
 
 .input {
   border: none;
   border-radius: 0;
-  padding: 5%;
   width: 80%;
   font-size: 1.2em;
+  padding: 10px;
+  /* height: 50px; */
+}
+
+/* Remove side-effect close button on input */
+::-ms-clear {
+  display: none;
 }
 
 input:focus,
@@ -17,13 +25,10 @@ select:focus {
   outline: none;
 }
 
-.send-button {
-  color: #fff !important;
-  text-transform: uppercase;
-  text-decoration: none;
-  background: #2979ff;
-  padding: 20px;
-  display: inline-block;
-  border: none;
-  width: 20%;
+.send-message-container {
+  padding: 10px;
+}
+
+.send {
+  transform: scale(0.54);
 }

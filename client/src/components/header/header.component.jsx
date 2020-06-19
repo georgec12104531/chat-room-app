@@ -8,12 +8,15 @@ const Header = ({ room, users, name }) => {
     if (user.name !== name) return user.name;
   });
 
+  let online = others.length;
+
   return (
     <div className="header-main-container">
       <div className="left-container">
-        <img src={onlineIcon} alt="open" />
+        {online ? <img src={onlineIcon} alt="open" /> : null}
+
         {others.map((user, i) => {
-          return <h3 id={i}>{user.name}</h3>;
+          return <h3 className="header-text" key={i}>{user.name}</h3>;
         })}
       </div>
       <div className="right-container">

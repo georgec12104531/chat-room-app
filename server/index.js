@@ -17,36 +17,12 @@ io.on("connection", (socket) => {
   socket.on("join", ({ name, room }, callback) => {
     const { user, error } = addUser({ id: socket.id, name, room });
 
-    // if (error) {
-    //   return callback(error);
-    // }
-
     // Lets the user know he has joined the chat
     socket.emit("message", {
       user: "admin",
-      text: `${user.name} has entered the room`,
-      time: moment().format("h: mm a"),
+      text: "You have entered the room",
+      time: moment().format("h:mm a"),
     });
-
-    // Mock data
-    // socket.emit("messages", [
-    //   {
-    //     user: "admin",
-    //     text: `${user.name} has entered the room`,
-    //   },
-    //   {
-    //     user: "admin",
-    //     text: `${user.name} has entered the room`,
-    //   },
-    //   {
-    //     user: "admin",
-    //     text: `${user.name} has entered the room`,
-    //   },
-    //   {
-    //     user: "admin",
-    //     text: `${user.name} has entered the room`,
-    //   },
-    // ]);
 
     io.to(user.room).emit("messages", {
       room: user.room,
@@ -57,7 +33,7 @@ io.on("connection", (socket) => {
     socket.broadcast.to(user.room).emit("message", {
       user: "admin",
       text: `${user.name} has joined`,
-      time: moment().format("h: mm a"),
+      time: moment().format("h:mm a"),
     });
 
     socket.join(user.room);
@@ -73,8 +49,9 @@ io.on("connection", (socket) => {
     io.to(user.room).emit("message", {
       user: user.name,
       text: message,
-      time: moment().format("h: mm a"),
+      time: moment().format("h:mm a"),
     });
+
     io.to(user.room).emit("roomData", {
       room: user.room,
       users: getUsersInRoom(user.room),
@@ -85,16 +62,20 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User has left");
 
-    const user = removeUser(socket.id);
-    if (user) {
-      io.to(user.room).emit("message", {
+    const removed = removeUser(socket.id);
+    if (removed) {
+      io.to(removed.room).emit("message", {
         user: "admin",
-        text: `${user.name} has left the room`,
+        text: `${removed.name} has left the room`,
+        time: moment().format("h:mm a"),
       });
     }
+    io.to(removed.room).emit("roomData", {
+      room: removed.room,
+      users: getUsersInRoom(removed.room),
+    });
   });
 });
 
 app.use(router);
-
 server.listen(port, () => console.log(`Server has started on port ${port}`));

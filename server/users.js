@@ -20,7 +20,6 @@ const addUser = ({ id, name, room }) => {
   const user = { id, name, room };
   users.push(user);
   console.log("users after", users);
-  console.log("user after", user);
   return { user };
 };
 
@@ -31,6 +30,7 @@ const removeUser = (id) => {
   if (index !== -1) {
     return users.splice(index, 1)[0];
   }
+  console.log("users after removed", users);
 };
 
 const getUser = (id) => {

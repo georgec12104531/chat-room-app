@@ -1,5 +1,6 @@
 import React from "react";
 import "./input.style.css";
+import send from "../../icons/send.png";
 
 const Input = ({ message, sendMessage, setMessage }) => {
   return (
@@ -11,9 +12,14 @@ const Input = ({ message, sendMessage, setMessage }) => {
         onChange={(e) => setMessage(e.target.value)}
         onKeyPress={(e) => (e.key === "Enter" ? sendMessage(e) : null)}
       />
-      <button className="send-button" onClick={(e) => sendMessage(e)}>
-        Send
-      </button>
+      <div className="send-message-container">
+        <img
+          alt="send-message"
+          className="send"
+          src={send}
+          onClick={(e) => sendMessage(e)}
+        ></img>
+      </div>
     </div>
   );
 };

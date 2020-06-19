@@ -32,13 +32,6 @@ const Chat = ({ location }) => {
     };
   }, [endPoint, location.search]);
 
-  // useEffect(() => {
-  //   socket.on("messages", (messages) => {
-  //     setMessages(messages);
-  //     console.log(messages);
-  //   });
-  // }, messages);
-
   useEffect(() => {
     socket.on("message", (message) => {
       setMessages([...messages, message]);
@@ -55,7 +48,6 @@ const Chat = ({ location }) => {
     if (message) {
       socket.emit("sendMessage", message, () => setMessage(""));
     }
-    // console.log(messages);
   };
 
   return (
