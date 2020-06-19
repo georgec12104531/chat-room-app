@@ -5,7 +5,7 @@ import closeIcon from "../../images/closeIcon.png";
 
 const Header = ({ room, users, name }) => {
   let others = users.filter((user) => {
-    if (user.name !== name.toLowerCase()) return user.name;
+    return user.name !== name.toLowerCase();
   });
   let online = others.length;
 
