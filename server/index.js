@@ -13,6 +13,7 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 io.on("connection", (socket) => {
   // When a user joins
   socket.on("join", ({ name, room }, callback) => {
+    console.log("User has joined");
     const { user, error } = addUser({ id: socket.id, name, room });
 
     // Lets the user know they have joined the chat
@@ -39,7 +40,6 @@ io.on("connection", (socket) => {
 
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
-    console.log("user", user);
     io.to(user.room).emit("message", {
       user: user.name,
       text: message,
