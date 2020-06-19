@@ -4,13 +4,13 @@
   margin: 0;
 }
 
-.main-container {
+.join-main-container {
   display: flex;
   justify-content: center;
   text-align: center;
   height: 100vh;
   align-items: center;
-  background-color: #5c7e95;
+  background-color: #568ea6;
 }
 
 .sub-container {

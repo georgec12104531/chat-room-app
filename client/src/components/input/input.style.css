@@ -9,8 +9,11 @@
   border: none;
   border-radius: 0;
   width: 80%;
-  font-size: 1.2em;
   padding: 10px;
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  font-size: 14px;
   /* height: 50px; */
 }
 

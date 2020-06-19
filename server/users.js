@@ -12,14 +12,12 @@ const addUser = ({ id, name, room }) => {
     (user) => user.name === name && user.room === room
   );
 
-  console.log("is existing user", existingUser);
   if (existingUser) {
     return { error: "Username is taken" };
   }
 
   const user = { id, name, room };
   users.push(user);
-  console.log("users after", users);
   return { user };
 };
 

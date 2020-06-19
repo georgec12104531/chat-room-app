@@ -5,7 +5,7 @@ import closeIcon from "../../images/closeIcon.png";
 
 const Header = ({ room, users, name }) => {
   let others = users.filter((user) => {
-    if (user.name !== name) return user.name;
+    if (user.name !== name.toLowerCase()) return user.name;
   });
 
   let online = others.length;
@@ -14,9 +14,12 @@ const Header = ({ room, users, name }) => {
     <div className="header-main-container">
       <div className="left-container">
         {online ? <img src={onlineIcon} alt="open" /> : null}
-
         {others.map((user, i) => {
-          return <h3 className="header-text" key={i}>{user.name}</h3>;
+          return (
+            <div className="header-text" key={i}>
+              {user.name}
+            </div>
+          );
         })}
       </div>
       <div className="right-container">

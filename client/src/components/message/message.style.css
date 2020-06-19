@@ -5,6 +5,7 @@
   color: white;
   display: inline-block;
   max-width: 80%;
+  margin-top: 5px;
   margin-right: 10px;
   height: fit-content;
 }
@@ -12,14 +13,12 @@
 .message-text {
   text-align: start;
   width: 100%;
-  letter-spacing: 0;
+  font-family: "Roboto", sans-serif;
+  line-height: 20px;
+  letter-spacing: 0.2px;
   float: left;
-  font-size: 1.1em;
+  font-size: 14px;
   word-wrap: break-word;
-}
-
-.message-text img {
-  vertical-align: middle;
 }
 
 .message-main-container {
@@ -30,8 +29,7 @@
 
 .message-container {
   display: flex;
-  /* justify-content: center; */
-  align-items: center;
+  align-items: self-start;
   padding: 0 5%;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -41,17 +39,12 @@
 .sent-text {
   display: flex;
   align-items: center;
-  font-family: Helvetica;
   color: #828282;
   letter-spacing: 0.3px;
-}
-
-.pl-10 {
-  padding-left: 10px;
-}
-
-.pr-10 {
-  padding-right: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
 }
 
 .justify-start {
@@ -66,19 +59,19 @@
   align-items: flex-start;
 }
 
-.colorWhite {
-  color: white;
+.color-white {
+  color: rgba(0, 0, 0 58%);
 }
 
-.colorDark {
-  color: #353535;
+.color-dark {
+  color: #000000;
 }
 
-.backgroundBlue {
-  background: #2979ff;
+.background-blue {
+  background: #2074ff;
 }
 
-.backgroundLight {
+.background-light {
   background: #f3f3f3;
 }
 

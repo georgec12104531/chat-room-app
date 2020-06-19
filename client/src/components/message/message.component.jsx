@@ -7,11 +7,11 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
   let isSentByCurrentUser = false;
   let trimmedName = name.trim().toLowerCase();
 
-  let group = prev && prev.user === trimmedName ? true : false;
-  let otherGroup = prev ? prev.user === user : false;
+  let groupMessages = prev && prev.user === trimmedName ? true : false;
+  let groupOtherMessages = prev ? prev.user === user : false;
 
   let showTimeStamp = next && next.user === trimmedName ? false : true;
-  let otherShowTimeStamp = next && next.user === user ? false : true;
+  let showOtherTimeStamp = next && next.user === user ? false : true;
 
   if (user === trimmedName) {
     isSentByCurrentUser = true;
@@ -20,10 +20,10 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
   return isSentByCurrentUser ? (
     <div className="message-main-container">
       <div className="message-container justify-end">
-        <div className="message-box backgroundLight">
-          <p className="message-text colorDark">{text}</p>
+        <div className="message-box background-light">
+          <p className="message-text color-dark">{text}</p>
         </div>
-        {group ? (
+        {groupMessages ? (
           <div className="profile-spacing"></div>
         ) : (
           <img
@@ -33,7 +33,6 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
           ></img>
         )}
       </div>
-
       {showTimeStamp ? (
         <p className="sent-text time-spacing-right">{time}</p>
       ) : (
@@ -43,7 +42,7 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
   ) : (
     <div className="message-main-container align-start">
       <div className="message-container justify-start">
-        {otherGroup ? (
+        {groupOtherMessages ? (
           <div className="profile-spacing"></div>
         ) : (
           <img
@@ -52,11 +51,11 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
             src={otherProfile}
           ></img>
         )}
-        <div className="message-box backgroundBlue">
+        <div className="message-box background-blue">
           <p className="message-text">{text}</p>
         </div>
       </div>
-      {otherShowTimeStamp ? (
+      {showOtherTimeStamp ? (
         <p className="sent-text time-spacing-left">{time}</p>
       ) : (
         <p></p>

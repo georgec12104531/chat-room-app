@@ -8,9 +8,9 @@ const Join = () => {
   const [room, setRoom] = useState("");
 
   return (
-    <div className="main-container">
+    <div className="join-main-container">
       <div className="sub-container">
-        <div className="header">Join</div>
+        <div className="header">Join Chat Room</div>
         <input
           type="text"
           placeholder="Please enter your name"
@@ -19,7 +19,7 @@ const Join = () => {
         />
         <input
           type="text"
-          placeholder="Please enter the name of the room..."
+          placeholder="Please enter the name of the chat room..."
           className="join-input mt-20"
           onChange={(e) => setRoom(e.target.value)}
         />
