@@ -20,14 +20,14 @@ const Join = () => {
         <input
           type="text"
           placeholder="Please enter the name of the chat room..."
-          className="join-input mt-20"
+          className="join-input"
           onChange={(e) => setRoom(e.target.value)}
         />
         <Link
           onClick={(e) => (!name || !room ? e.preventDefault() : null)}
           to={`/chat?name=${name}&room=${room}`}
         >
-          <button className="button mt-20" type="submit">
+          <button className="button" type="submit">
             Enter
           </button>
         </Link>

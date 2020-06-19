@@ -59,12 +59,13 @@ io.on("connection", (socket) => {
         text: `${removed.name} has left the room`,
         time: moment().format("h:mm a"),
       });
+
+      // Send to client-side new users after removing
+      io.to(removed.room).emit("roomData", {
+        room: removed.room,
+        users: getUsersInRoom(removed.room),
+      });
     }
-    // Send to client-side new users after removing
-    io.to(removed.room).emit("roomData", {
-      room: removed.room,
-      users: getUsersInRoom(removed.room),
-    });
   });
 });
 

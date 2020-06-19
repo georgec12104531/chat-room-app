@@ -1,7 +1,6 @@
 let users = [];
 
 const addUser = ({ id, name, room }) => {
-  console.log("inside add user function", id, name, room);
   // Format the the name and room so the backend
   // receives the same style of string (lowercase without leading/trailing spaces)
   name = name.trim().toLowerCase();

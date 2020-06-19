@@ -7,7 +7,6 @@ const Header = ({ room, users, name }) => {
   let others = users.filter((user) => {
     if (user.name !== name.toLowerCase()) return user.name;
   });
-
   let online = others.length;
 
   return (
