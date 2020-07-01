@@ -8,7 +8,7 @@ const Message = ({ message: { user, text, time }, name, prev, next }) => {
   let isSentByCurrentUser = false;
   let trimmedName = name.trim().toLowerCase();
 
-  // Message grouping for messages sent by same user consecutively
+  // Grouping for messages sent by same user consecutively
   let groupMessages = prev && prev.user === trimmedName;
   let groupOtherMessages = prev && prev.user === user;
 

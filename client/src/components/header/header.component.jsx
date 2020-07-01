@@ -4,6 +4,7 @@ import onlineIcon from "../../images/onlineIcon.png";
 import closeIcon from "../../images/closeIcon.png";
 
 const Header = ({ room, users, name }) => {
+  // Display users in chat, excluding self
   let others = users.filter((user) => {
     return user.name !== name.toLowerCase();
   });
@@ -16,7 +17,7 @@ const Header = ({ room, users, name }) => {
         {others.map((user, i) => {
           return (
             <div className="header-text" key={i}>
-              {user.name}
+              {user.name}{" "}
             </div>
           );
         })}
