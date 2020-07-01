@@ -1,6 +1,7 @@
 const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
+const cors = require("cors");
 
 const port = process.env.PORT || 5000;
 const router = require("./router");
@@ -9,6 +10,9 @@ const server = http.createServer(app);
 const io = socketio(server);
 const moment = require("moment");
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
+
+app.use(router);
+app.use(cors);
 
 io.on("connection", (socket) => {
   // When a user joins
